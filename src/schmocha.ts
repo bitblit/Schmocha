@@ -8,7 +8,6 @@ import {SchmochaConfig} from './schmocha-config';
 import {SchmochaConfigFile} from './schmocha-config-file';
 import {Logger} from '@bitblit/ratchet/dist/common/logger';
 import {MapRatchet} from '@bitblit/ratchet/dist/common/map-ratchet';
-import {TestFunction} from 'mocha';
 
 export class Schmocha {
     public static DEFAULT_FILE: string = 'schmocha.json';
@@ -22,7 +21,7 @@ export class Schmocha {
             throw new Error('You must provide a namespace');
         }
 
-        this.filePath = process.env[Schmocha.ENV_VAR_NAME] || Schmocha.DEFAULT_FILE;
+        this.filePath = process.env[Schmocha.ENV_VAR_NAME] || path.join(__dirname, Schmocha.DEFAULT_FILE);
 
         if (!fs.existsSync(this.filePath)) {
             throw new Error('Schmocha file not found (using "'+this.filePath+'")');
