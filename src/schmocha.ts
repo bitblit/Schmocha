@@ -60,6 +60,15 @@ export class Schmocha {
         return !this.allEnabled(inTagList);
     }
 
+    public paramsPresent(inParamList: string[]): boolean {
+        const paramList: string[] = inParamList || [];
+        let rval: boolean = true;
+        paramList.forEach(p => {
+            rval = rval && !!this.param(p);
+        });
+        return rval;
+    }
+
     public param<T>(name: string): T {
         let rval: T = null;
 
@@ -68,6 +77,20 @@ export class Schmocha {
             rval = MapRatchet.findValue(this.config.parameters, pth) as T;
         }
 
+        return rval;
+    }
+
+    public skipIfParamsMissing(params: string[], mocha:any): boolean {
+        let rval: boolean = true;
+        if (!this.paramsPresent(params)) {
+            rval = false;
+            if (mocha.skip) {
+                Logger.debug('Missing param, skipping');
+                mocha.skip();
+            } else {
+                Logger.warn('Missing param but cannot skip');
+            }
+        }
         return rval;
     }
 
