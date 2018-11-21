@@ -43,7 +43,7 @@ export class Schmocha {
     public static check(namespace: string, mocha: Suite, enabledTags: string[] = [], reqParams: string[] = []): Schmocha {
 
         let sch: Schmocha = new Schmocha(namespace);
-        if (!sch.skipIfAllDisabled(enabledTags, mocha) || !sch.skipIfParamsMissing(reqParams, mocha)) {
+        if (!sch.skipIfAnyDisabled(enabledTags, mocha) || !sch.skipIfParamsMissing(reqParams, mocha)) {
             sch = null;
         }
         return sch;
