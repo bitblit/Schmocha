@@ -8,6 +8,7 @@ import {SchmochaConfig} from './schmocha-config';
 import {SchmochaConfigFile} from './schmocha-config-file';
 import {Logger} from '@bitblit/ratchet/dist/common/logger';
 import {MapRatchet} from '@bitblit/ratchet/dist/common/map-ratchet';
+import {Suite} from 'mocha';
 
 export class Schmocha {
     public static DEFAULT_FILE: string = 'schmocha.json';
@@ -39,7 +40,7 @@ export class Schmocha {
         }
     }
 
-    public static check(namespace: string, mocha: any, enabledTags: string[] = [], reqParams: string[] = []): Schmocha {
+    public static check(namespace: string, mocha: Suite, enabledTags: string[] = [], reqParams: string[] = []): Schmocha {
 
         let sch: Schmocha = new Schmocha(namespace);
         if (!sch.skipIfAllDisabled(enabledTags, mocha) || !sch.skipIfParamsMissing(reqParams, mocha)) {
@@ -88,44 +89,32 @@ export class Schmocha {
         return rval;
     }
 
-    public skipIfParamsMissing(params: string[], mocha:any): boolean {
+    public skipIfParamsMissing(params: string[], mocha:Suite): boolean {
         let rval: boolean = true;
         if (!this.paramsPresent(params)) {
             rval = false;
-            if (mocha.skip) {
-                Logger.debug('Missing param, skipping');
-                mocha.skip();
-            } else {
-                Logger.warn('Missing param but cannot skip');
-            }
+            Logger.debug('Missing param, skipping');
+            mocha.ctx.currentTest.skip();
         }
         return rval;
     }
 
-    public skipIfAllDisabled(tags: string[], mocha:any): boolean {
+    public skipIfAllDisabled(tags: string[], mocha:Suite): boolean {
         let rval: boolean = true;
         if (this.allDisabled(tags)) {
             rval = false;
-            if (mocha.skip) {
-                Logger.debug('All disabled, skipping');
-                mocha.skip();
-            } else {
-                Logger.warn('All disabled but cannot skip');
-            }
+            mocha.ctx.currentTest.skip();
+            Logger.debug('All disabled, skipping');
         }
         return rval;
     }
 
-    public skipIfAnyDisabled(tags: string[], mocha:any): boolean {
+    public skipIfAnyDisabled(tags: string[], mocha:Suite): boolean {
         let rval: boolean = true;
         if (this.allDisabled(tags)) {
             rval = false;
-            if (mocha.skip) {
-                Logger.debug('All disabled, skipping');
-                mocha.skip();
-            } else {
-                Logger.warn('All disabled but cannot skip');
-            }
+            mocha.ctx.currentTest.skip();
+            Logger.debug('At least one disabled, skipping');
         }
         return rval;
     }
