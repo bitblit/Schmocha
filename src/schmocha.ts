@@ -49,16 +49,21 @@ export class Schmocha {
         return sch;
     }
 
+    public filterToEnabled(inTagList: string[]): string[] {
+        const tagList: string[] = inTagList || [];
+        const filtered: string[] = tagList.filter(t => this.config.enabledTags.indexOf(t) > -1);
+        Logger.silly('Filtered %j to %j', inTagList, filtered);
+        return filtered;
+    }
+
     public allEnabled(inTagList: string[]): boolean {
         const tagList: string[] = inTagList || [];
-        const filtered: string[] = this.config.enabledTags.filter(t => tagList.indexOf(t) > -1);
-        return filtered.length == tagList.length;
+        return this.filterToEnabled(tagList).length == tagList.length;
     }
 
     public anyEnabled(inTagList: string[]): boolean {
         const tagList: string[] = inTagList || [];
-        const filtered: string[] = this.config.enabledTags.filter(t => tagList.indexOf(t) > -1);
-        return filtered.length > 0;
+        return this.filterToEnabled(tagList).length >0;
     }
 
     public allDisabled(inTagList: string[]): boolean {
