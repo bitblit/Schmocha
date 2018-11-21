@@ -21,7 +21,7 @@ export class Schmocha {
             throw new Error('You must provide a namespace');
         }
 
-        this.filePath = process.env[Schmocha.ENV_VAR_NAME] || path.join(__dirname, Schmocha.DEFAULT_FILE);
+        this.filePath = process.env[Schmocha.ENV_VAR_NAME] || path.join(process.cwd(), Schmocha.DEFAULT_FILE);
 
         if (!fs.existsSync(this.filePath)) {
             throw new Error('Schmocha file not found (using "'+this.filePath+'")');
@@ -37,6 +37,15 @@ export class Schmocha {
             this.config = finder[0];
             Logger.debug('Schmocha configured to %j', this.config);
         }
+    }
+
+    public static check(namespace: string, mocha: any, enabledTags: string[] = [], reqParams: string[] = []): Schmocha {
+
+        let sch: Schmocha = new Schmocha(namespace);
+        if (!sch.skipIfAllDisabled(enabledTags, mocha) || !sch.skipIfParamsMissing(reqParams, mocha)) {
+            sch = null;
+        }
+        return sch;
     }
 
     public allEnabled(inTagList: string[]): boolean {
