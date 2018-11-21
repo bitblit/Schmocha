@@ -116,7 +116,7 @@ export class Schmocha {
 
     public skipIfAnyDisabled(tags: string[], mocha:Suite): boolean {
         let rval: boolean = true;
-        if (this.allDisabled(tags)) {
+        if (this.anyDisabled(tags)) {
             rval = false;
             mocha.ctx.test.skip();
             Logger.debug('At least one disabled, skipping');
