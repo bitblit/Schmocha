@@ -94,7 +94,7 @@ export class Schmocha {
         if (!this.paramsPresent(params)) {
             rval = false;
             Logger.debug('Missing param, skipping');
-            mocha.ctx.currentTest.skip();
+            mocha.ctx.test.skip();
         }
         return rval;
     }
@@ -103,7 +103,7 @@ export class Schmocha {
         let rval: boolean = true;
         if (this.allDisabled(tags)) {
             rval = false;
-            mocha.ctx.currentTest.skip();
+            mocha.ctx.test.skip();
             Logger.debug('All disabled, skipping');
         }
         return rval;
@@ -113,7 +113,7 @@ export class Schmocha {
         let rval: boolean = true;
         if (this.allDisabled(tags)) {
             rval = false;
-            mocha.ctx.currentTest.skip();
+            mocha.ctx.test.skip();
             Logger.debug('At least one disabled, skipping');
         }
         return rval;
