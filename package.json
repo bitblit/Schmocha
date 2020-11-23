@@ -17,6 +17,7 @@
     "watch": "tsc -w .",
     "lint": "eslint src/**/*.ts",
     "lint-fix": "eslint --fix src/**/*.ts",
+    "apply-circle": "node dist/circleci/apply-circle-ci-env-variables-to-files src/build-properties.json",
     "clean": "shx rm -Rf dist",
     "test": "mocha -r ts-node/register test/**/test-*.ts"
   },
