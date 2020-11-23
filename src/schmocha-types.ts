@@ -4,6 +4,12 @@ export type TestFn = (done?: DoneFn) => Promise<void | undefined | unknown> | vo
 export type BlockFn = () => void;
 export type BlockName = string;
 
+export interface SchmochaOptions {
+  namespace: string;
+  enabledTags?: string[];
+  reqParams?: string[];
+}
+
 export interface SchmochaDescribe {
   (blockName: BlockName, blockFn: BlockFn): void;
 }
