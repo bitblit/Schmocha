@@ -1,9 +1,6 @@
 export interface SchmochaConfig {
-    namespace: string;
+  namespace: string;
 
-    enabledTags: string[];
-    parameters: any;
-
-
+  enabledTags: string[];
+  parameters: any;
 }
-

@@ -1,7 +1,6 @@
-import {SchmochaConfig} from './schmocha-config';
+import { SchmochaConfig } from './schmocha-config';
 
 export interface SchmochaConfigFile {
-    version: number;
-    configs: SchmochaConfig[];
+  version: number;
+  configs: SchmochaConfig[];
 }
-
