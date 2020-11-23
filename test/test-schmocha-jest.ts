@@ -1,25 +1,23 @@
-import { expect } from 'chai';
-import { Schmocha } from '../src/schmocha';
+import { SchmochaJest } from '../src/schmocha-jest';
 
-describe('#schmocha', () => {
-    const [schDescribe, schIt] = Schmocha.create({
+describe('#schmocha-jest', function () {
+    const [schDescribe, schIt] = SchmochaJest.create({
         namespace: 'neon',
         enabledTags: ['ffmpeg']
     });
 
-
     it('should fail if passed a bad namespace', async () => {
         try {
-            const s: Schmocha = new Schmocha('this should fail');
+            const s: SchmochaJest = new SchmochaJest('this should fail');
             throw new Error('Did not throw expected error!');
         } catch (err) {
-            expect(err).to.not.be.undefined;
+            expect(err).toBeDefined();
         }
     });
 
     it('should provide a tuple of describe and it', () => {
-        expect(schDescribe).to.not.be.undefined;
-        expect(schIt).to.not.be.undefined;
+        expect(schDescribe).toBeDefined();
+        expect(schIt).toBeDefined();
     });
 
     describe('should skip tests based on configuration', () => {
@@ -27,6 +25,6 @@ describe('#schmocha', () => {
         schIt('should skip this test', () => {
             foo = 'baz'
         });
-        expect(foo).to.equal('bar');
+        expect(foo).toBe('bar');
     });
 });

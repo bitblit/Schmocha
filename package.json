@@ -16,7 +16,9 @@
     "compile": "npm run clean && tsc",
     "watch": "tsc -w .",
     "clean": "rm -Rf dist",
-    "test": "mocha -r ts-node/register test/**/*.ts"
+    "test-jest": "jest",
+    "test-mocha": "mocha -r ts-node/register test/**/test-schmocha.ts",
+    "test": "yarn test-jest && yarn test-mocha"
   },
   "repository": {
     "type": "git",
@@ -41,9 +43,13 @@
   },
   "devDependencies": {
     "@types/chai": "4.1.7",
-    "@types/mocha": "5.2.5",
+    "@types/jest": "26.0.15",
+    "@types/mocha": "8.0.4",
     "@types/node": "6.0.46",
+    "chai": "4.2.0",
+    "jest": "26.6.3",
     "mocha": "5.2.0",
+    "ts-jest": "26.4.4",
     "ts-node": "3.3.0",
     "tslint": "5.7.0",
     "typescript": "2.7.1"
