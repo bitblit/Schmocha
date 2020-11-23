@@ -3,7 +3,7 @@ import { Schmocha } from '../src/schmocha';
 
 describe('#schmocha', () => {
   const [schDescribe, schIt] = Schmocha.create({
-    namespace: 'neon',
+    namespace: 'schmocha',
     enabledTags: ['ffmpeg'],
   });
 
