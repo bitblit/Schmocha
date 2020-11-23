@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "configs": [
+    {
+      "namespace": "schmocha",
+      "enabledTags": [],
+      "parameters": {
+        "default": false
+      }
+    }
+  ]
+}
