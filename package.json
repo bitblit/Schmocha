@@ -1,6 +1,6 @@
 {
   "name": "@bitblit/schmocha",
-  "version": "0.0.2",
+  "version": "0.0.9",
   "description": "Extensions to simplify working with mocha",
   "main": "./dist/index",
   "typings": "./dist/index",
