@@ -7,9 +7,9 @@
     "strict": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noUnusedLocals": false,
-    "noImplicitThis": false,
+    "noImplicitThis": true,
     "strictNullChecks": false,
     "noImplicitReturns": true,
     "preserveConstEnums": true,
@@ -32,6 +32,5 @@
     "typePatches",
     "jest",
     "mocha"
-  ],
-  "CAW_NOTES": "Set noImplicitAny, noImplicitThis and noUnusedLocals back to true at some point"
+  ]
 }
