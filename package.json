@@ -49,7 +49,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@bitblit/ratchet": "0.9.15",
-    "moment": "2.29.1",
+    "moment": "2.29.4",
     "nconf": "0.10.0"
   },
   "resolutions": {
